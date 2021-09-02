@@ -1,0 +1,24 @@
+{
+  "contacts": [
+    {
+      "id": "d663b5a1-3e21-48e2-9e1d-78a6acf55c10",
+      "name": "Rosie Simpson",
+      "number": "459-12-56"
+    },
+    {
+      "id": "f455fe7f-e620-40da-9b96-9733889d0f1a",
+      "name": "Hermione Kline",
+      "number": "443-89-12"
+    },
+    {
+      "id": "271d85aa-b0ba-453c-9d02-b7c026ab96f0",
+      "name": "Eden Clements",
+      "number": "645-17-79"
+    },
+    {
+      "id": "56273fad-da41-4702-bb7f-1bfb56c5bf69",
+      "name": "Annie Copeland",
+      "number": "227-91-26"
+    }
+  ]
+}

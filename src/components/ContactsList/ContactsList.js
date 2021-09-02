@@ -1,25 +1,37 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import actions from '../../redux/contacts/contacts-actions';
-import { getVisibleContacts } from '../../redux/contacts/contacts-selectors';
+import {
+  contactsOperations,
+  contactsSelectors,
+  contactsActions,
+} from 'redux/contacts';
 import Contact from './Contact';
 
 const ContactsList = () => {
-  const contacts = useSelector(getVisibleContacts);
+  const contacts = useSelector(contactsSelectors.getVisibleContacts);
+  //   const isLoading = useSelector(contactsSelectors.getIsLoading);
   const dispatch = useDispatch();
 
-  const onDeleteContact = id => dispatch(actions.deleteContact(id));
+  useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
+
+  const onDeleteContact = id => dispatch(contactsActions.deleteContact(id));
 
   return (
-    <ul>
-      {contacts.map(({ id, name, number }) => (
-        <Contact
-          key={id}
-          name={name}
-          number={number}
-          onDeleteContact={() => onDeleteContact(id)}
-        />
-      ))}
-    </ul>
+    <>
+      {/* {isLoading && <h1>Loading...</h1>} */}
+      {contacts.length > 0 && (
+        <ul>
+          {contacts.map(({ id, name, number }) => (
+            <Contact
+              key={id}
+              name={name}
+              number={number}
+              onDeleteContact={() => onDeleteContact(id)}
+            />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 
