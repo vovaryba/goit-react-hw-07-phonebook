@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { contactsSelectors, contactsActions } from 'redux/contacts';
+import { contactsSelectors, contactsOperations } from 'redux/contacts';
 import s from './Form.module.css';
 
 function Form() {
@@ -37,7 +37,7 @@ function Form() {
       return;
     }
 
-    dispatch(contactsActions.addContact({ name, number }));
+    dispatch(contactsOperations.addContact({ name, number }));
     reset();
   };
 

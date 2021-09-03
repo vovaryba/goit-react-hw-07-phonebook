@@ -1,24 +1,22 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  contactsOperations,
-  contactsSelectors,
-  contactsActions,
-} from 'redux/contacts';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import Contact from './Contact';
 
 const ContactsList = () => {
   const contacts = useSelector(contactsSelectors.getVisibleContacts);
-  //   const isLoading = useSelector(contactsSelectors.getIsLoading);
+  const isLoading = useSelector(contactsSelectors.getIsLoading);
+  const error = useSelector(contactsSelectors.getError);
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
 
-  const onDeleteContact = id => dispatch(contactsActions.deleteContact(id));
+  const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   return (
     <>
-      {/* {isLoading && <h1>Loading...</h1>} */}
+      {error && <h2>{error}</h2>}
+      {isLoading && <h2>Loading...</h2>}
       {contacts.length > 0 && (
         <ul>
           {contacts.map(({ id, name, number }) => (
